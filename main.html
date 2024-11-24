@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 소설 생성기</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafc;
+            color: #333;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #444;
+            margin-top: 20px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+        input, select, textarea, button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #5d9cec;
+            box-shadow: 0 0 5px rgba(93, 156, 236, 0.5);
+        }
+        button {
+            background-color: #5d9cec;
+            color: white;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #4a86d4;
+        }
+        #novelOutput, #characterSuggestions, #newNovelOutput {
+            background-color: #fff;
+            margin: 20px auto;
+            max-width: 600px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            color: #555;
+        }
+        #novelOutput h2, #newNovelOutput h2, #characterSuggestions h2 {
+            color: #444;
+            margin-bottom: 15px;
+        }
+        #characterSuggestions button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        #characterSuggestions button:hover {
+            background-color: #5a6268;
+        }
+        /* Add responsive design */
+        @media (max-width: 768px) {
+            form, #novelOutput, #characterSuggestions, #newNovelOutput {
+                margin: 10px;
+                padding: 15px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    
+</head>
+<body>
+
+<h1>AI 소설 생성기</h1>
+
+<!-- 소설 기본 정보 입력 폼 -->
+<form id="novelForm">
+    <label for="genre">장르</label>
+    <input type="text" id="genre" name="genre" placeholder="예: 판타지, 로맨스, 스릴러" required>
+
+    <label for="setting">배경</label>
+    <input type="text" id="setting" name="setting" placeholder="예: 한국, 일본, 미래 도시" required>
+
+    <label for="length">분량 (챕터 수)</label>
+    <input type="number" id="length" name="length" placeholder="챕터 수 입력" required>
+
+    <button type="submit">소설 생성</button>
+</form>
+
+<div id="novelOutput"></div>
+
+<!-- 소설 수정 폼 -->
+<div id="editSection" style="display:none;">
+    <h2>소설 수정</h2>
+    <form id="editForm">
+        <label for="editInstructions">수정 요청사항</label>
+        <textarea id="editInstructions" placeholder="예: 등장인물의 말투를 더 유머러스하게 변경"></textarea>
+        <button type="submit">소설 수정 요청</button>
+    </form>
+    <div id="newNovelOutput"></div>
+</div>
+
+<!-- 등장인물 추천 -->
+<div>
+    <h2>등장인물 추천</h2>
+    <button id="getCharacterSuggestions">등장인물 추천받기</button>
+    <div id="characterSuggestions"></div>
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
